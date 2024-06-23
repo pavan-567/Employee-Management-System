@@ -19,8 +19,8 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "gender")
+    private String gender;
 
     @Column(name = "designation")
     private String designation;
@@ -28,34 +28,27 @@ public class Employee {
     @Column(name = "salary")
     private String salary;
 
-    public Employee(int id, String firstName, String lastName, String email, String password, String designation, String salary) {
+
+    public Employee(int id, String firstName, String lastName, String email, String gender, String designation, String salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.gender = gender;
         this.designation = designation;
         this.salary = salary;
     }
 
-
-    public Employee(String firstName, String lastName, String email, String password, String designation, String salary) {
+    public Employee(String firstName, String lastName, String email, String gender, String designation, String salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.gender = gender;
         this.designation = designation;
         this.salary = salary;
     }
 
-    public Employee() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Employee() {
     }
 
     public String getFirstName() {
@@ -82,14 +75,6 @@ public class Employee {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getDesignation() {
         return designation;
     }
@@ -106,6 +91,22 @@ public class Employee {
         this.salary = salary;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -113,7 +114,7 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
                 ", designation='" + designation + '\'' +
                 ", salary='" + salary + '\'' +
                 '}';
