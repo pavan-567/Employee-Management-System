@@ -3,6 +3,7 @@ package com.ganga.springmvc.dao;
 import com.ganga.springmvc.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.MutationQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
         Query<Employee> query = session.createQuery("from Employee", Employee.class);
         return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void createEmployee(Employee employee) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(employee);
+    }
+
+    @Override
+    @Transactional
+    public Employee getEmployee(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Employee employee = session.get(Employee.class, id);
+        return employee;
+    }
+
+    @Override
+    @Transactional
+    public void deleteEmployee(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        MutationQuery query = session.createMutationQuery("DELETE FROM Employee e WHERE e.id=:id"); //  insert, update, or delete statement.
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 }
